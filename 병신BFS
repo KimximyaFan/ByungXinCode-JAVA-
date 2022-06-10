@@ -1,0 +1,76 @@
+// 첫 있어보이는 작업물
+// 이거도 별로 참조 없이 구현한거라
+// 기념비적으로 남길만 하다
+// 간선 수 적어서 연결리스트 방식이 적절할 것 같은데
+// 자바라 그냥 이거임
+
+import java.util.Scanner;
+import java.util.ArrayList;
+
+
+public class Main 
+{
+	public static void main (String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+		
+		int n = input.nextInt();
+		int m = input.nextInt();
+		int v = input.nextInt();
+		
+		ArrayList<Integer> q = new ArrayList<Integer>();
+		
+		int[][] r = new int[n][n];
+		
+		for (int i=0; i<m; i++)
+		{
+			int temp1 = input.nextInt();
+			int temp2 = input.nextInt();
+			
+			r[temp1-1][temp2-1] = 1;
+			r[temp2-1][temp1-1] = 1;	
+		}
+		
+		q.add(v);
+		
+		int j = 0;
+		
+		while(true)
+		{
+			f(q.get(j), n, r, q);
+			
+			if (j == q.size()-1)
+				break;
+			
+			j++;
+		}
+		
+		for (int i=0; i<q.size(); i++)
+		{
+			if ( i == q.size()-1)
+				System.out.print(q.get(i));
+			else
+				System.out.print(q.get(i)+ " ");
+		}
+			
+	}
+	
+	// v 시작노드, n 어레이 갯수, r 2차원 배열, q 어레이리스트
+	public static void f(int v, int n, int[][] r, ArrayList<Integer> q)
+	{
+		
+		for (int i=0; i<n; i++)
+		{
+			if ( r[v-1][i] == 1)
+			{
+				if ( !q.contains(i+1) )
+					q.add(i+1);
+				
+				r[v-1][i] = 0;
+				r[i][v-1] = 0;
+			}
+		}
+		
+	}
+
+}
