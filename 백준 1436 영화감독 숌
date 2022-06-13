@@ -1,0 +1,30 @@
+// 참조 1나도 안함, 자력
+// 자바
+
+import java.util.Scanner;
+
+public class AABY 
+{
+	public static void main (String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+		
+		int n = input.nextInt();
+		
+		int count = 0;
+		int num = 666;
+		
+		while (true)
+		{
+			if ( Integer.toString(num).contains("666") == true )
+				count++;
+			
+			if ( n == count)
+				break;
+			
+			num++;
+		}
+		
+		System.out.print(num);
+	}	
+}
