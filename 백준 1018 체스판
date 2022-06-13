@@ -1,0 +1,147 @@
+// 참조 1나도 안함, 자력
+// 자바
+
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class AABX 
+{
+	public static void main (String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+		
+		int n = input.nextInt();
+		int m = input.nextInt();
+		
+		input.nextLine();
+		
+		char[][] c = new char[n][m];
+		
+		ArrayList<Integer> a = new ArrayList<Integer>(); 
+		
+		for (int i=0; i<n; i++)
+		{
+			String s = input.nextLine();
+			
+			for (int j=0; j<m; j++)
+			{
+				c[i][j] = s.charAt(j);
+			}
+		}
+		
+		for (int i=0; i<=n-8; i++)
+		{
+			for (int j=0; j<=m-8; j++)
+			{
+				a.add( b(c, i, j) );
+				a.add( w(c, i, j) );
+			}
+		}
+		
+		int min = a.get(0);
+		
+		for (int i=0; i<a.size(); i++)
+		{
+			if ( min > a.get(i) )
+				min = a.get(i);
+		}
+		
+		System.out.print(min);
+	}
+	
+	public static int b (char[][] c, int a, int b)
+	{
+		int count = 0;
+		boolean toggle1 = true;
+		boolean toggle2 = true;
+		
+		for (int i=a; i<=a+7; i++)
+		{
+			toggle2 = true;
+			
+			for (int j=b; j<=b+7; j++)
+			{
+				if (toggle1 == true)
+				{
+					if (toggle2 == true)
+					{
+						if ( c[i][j] != 'B' )
+							count++;
+					}
+					else
+					{
+						if ( c[i][j] != 'W')
+							count++;
+					}
+				}
+				else
+				{
+					if (toggle2 == true)
+					{
+						if ( c[i][j] != 'W' )
+							count++;
+					}
+					else
+					{
+						if ( c[i][j] != 'B')
+							count++;
+					}
+				}
+				
+				toggle2 = !toggle2;
+			}
+			
+			toggle1 = !toggle1;
+		}
+		
+		return count;
+	}
+	
+	public static int w (char[][] c, int a, int b)
+	{
+		int count = 0;
+		boolean toggle1 = true;
+		boolean toggle2 = true;
+		
+		for (int i=a; i<=a+7; i++)
+		{
+			toggle2 = true;
+			
+			for (int j=b; j<=b+7; j++)
+			{
+				if (toggle1 == true)
+				{
+					if (toggle2 == true)
+					{
+						if ( c[i][j] != 'W' )
+							count++;
+					}
+					else
+					{
+						if ( c[i][j] != 'B')
+							count++;
+					}
+				}
+				else
+				{
+					if (toggle2 == true)
+					{
+						if ( c[i][j] != 'B' )
+							count++;
+					}
+					else
+					{
+						if ( c[i][j] != 'W')
+							count++;
+					}
+				}
+				
+				toggle2 = !toggle2;
+			}
+			
+			toggle1 = !toggle1;
+		}
+		
+		return count;
+	}
+}
