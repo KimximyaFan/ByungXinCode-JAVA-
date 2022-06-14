@@ -1,0 +1,196 @@
+// 코드 존나 더러움
+// 참조는 1나도 
+
+
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.ArrayList;
+
+public class AACC 
+{
+	public static void main (String[] args)
+	{
+		// n 은 홀수라 가정
+		
+		// 산술평균 : n개 수의 합을 n으로 나눔, 소수점 첫째 자리에서 반올림
+		// 중간값 : 제일 중앙에 있는 값
+		// 최빈값 : 제일 많이 나타나는 값
+		// 범위 : 최댓값과 최솟값의 차이
+		
+		Scanner input = new Scanner(System.in);
+		
+		int n = input.nextInt();
+
+		int[] a = new int[n];
+		
+		int sum = 0;
+		int max = 0;
+		int min = 0;
+		
+		boolean isNega = false;
+		
+		for (int i=0; i<n; i++)
+		{
+			if ( i == 0)
+			{
+				a[i] = input.nextInt();
+				
+				sum += a[i];
+				
+				max = a[i];
+				min = a[i];
+				
+				if ( a[i] < 0)
+					isNega = true;
+			}
+			else
+			{
+				a[i] = input.nextInt();
+				
+				sum += a[i];
+				
+				if ( max < a[i] )
+					max = a[i];
+				
+				if ( min > a[i] )
+					min = a[i];
+				
+				if ( a[i] < 0)
+					isNega = true;
+			}
+		}
+		
+		// 산술평균 q
+		double q = Math.round( (double)sum / n );
+		
+		Arrays.sort(a);
+		
+		// 중간값 w 
+		
+		int mean = (n/2);
+		
+		int w = a[mean];
+		
+		// 최빈값 value
+		
+		if ( max < 0)
+			max = -max;
+		
+		int[] cnt = new int[ max + 1 ];
+		
+		
+		if ( min < 0)
+			min -= 1;
+		else
+			min += 1;
+		int[] Ncnt = new int[ Math.abs(min) ];
+
+			
+		for (int i=0; i<n; i++)
+		{
+			if ( a[i] >= 0)
+			{
+				cnt[ a[i] ]++;
+			}
+			else
+			{
+				Ncnt[ Math.abs(a[i]) ]++;
+			}
+		}
+		
+		int value = a[0];
+		int e = 0;
+		
+		ArrayList<Integer> al = new ArrayList<Integer>();
+		
+		if (isNega == true)
+		{
+			for (int i=0; i<cnt.length; i++)
+			{
+				if ( e < cnt[i] )
+				{
+					e = cnt[i];
+					value = i;
+				}
+			}
+			for (int i=0; i<Ncnt.length; i++)
+			{
+				if ( e < Ncnt[i] )
+				{
+					e = Ncnt[i];
+					value = -i;
+				}
+					
+			}
+			
+			for (int i=0; i<cnt.length; i++)
+			{
+				if ( e == cnt[i] )
+				{
+					al.add(i);
+				}
+			}
+			for (int i=0; i<Ncnt.length; i++)
+			{
+				if ( e == Ncnt[i] )
+				{
+					al.add(-i);
+				}
+			}
+			
+		}
+		else
+		{
+			for (int i=0; i<cnt.length; i++)
+			{
+				if ( e < cnt[i] )
+				{
+					e = cnt[i];
+					value = i;
+				}
+			}
+			for (int i=0; i<cnt.length; i++)
+			{
+				if ( e == cnt[i] )
+				{
+					al.add(i);
+				}
+			}
+		}
+		
+		if ( al.size() > 1 )
+		{
+			int m = 0;
+			
+			for (int i=0; i<al.size(); i++)
+			{
+				if ( m > al.get(i) )
+					m = i;
+			}
+			
+			al.remove(m);
+			
+			m = al.get(0);
+			
+			for (int i=0; i<al.size(); i++)
+			{
+				if ( m > al.get(i) )
+					m = al.get(i);
+			}
+			
+			value = m;
+		}
+		
+		
+		
+		// 범위
+		
+		int r = Math.abs( a[0] - a[n-1] );
+		
+		
+		System.out.println( (int)q );
+		System.out.println(w);
+		System.out.println( value );
+		System.out.println(r);
+	}
+}
