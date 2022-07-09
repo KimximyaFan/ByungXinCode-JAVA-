@@ -1,0 +1,76 @@
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
+
+public class Main
+{
+	public static class Dot implements Comparable<Dot>
+	{
+		public int value;
+		public int rank;
+		
+		public Dot () { this.value = 0; this.rank = 0; }
+		public Dot (int value, int rank) { this.value = value; this.rank = rank; }
+		
+		@Override
+		public int compareTo (Dot d)
+		{
+			if ( this.value > d.value)
+				return 1;
+			
+			else if ( this.value == d.value )
+				return 0;
+			
+			else
+				return -1;
+		}
+	}
+	
+	
+	public static void main (String[] args) throws IOException
+	{
+		BufferedReader input = new BufferedReader( new InputStreamReader(System.in) );
+		BufferedWriter out = new BufferedWriter( new OutputStreamWriter(System.out) );
+		
+		int n = Integer.parseInt( input.readLine() );
+		
+		Dot[] a = new Dot[n];
+		Dot[] b = new Dot[n];
+		
+		StringTokenizer st = new StringTokenizer( input.readLine(), " " );
+		
+		for (int i=0; i<n; i++)
+		{
+			a[i] = new Dot( Integer.parseInt( st.nextToken() ), 0);
+			b[i] = a[i];
+		}
+		
+		Arrays.sort(b);
+		
+		int rank = 0;
+		b[0].rank = rank;
+		
+		for (int i=1; i<n; i++)
+		{
+			if ( b[i].value > b[i-1].value )
+			{
+				rank++;
+			}
+			
+			b[i].rank = rank;
+		}
+		
+		for (int i=0; i<n; i++)
+			out.write( a[i].rank + " ");
+		
+		out.flush();
+		out.close();
+	
+	}	
+		
+}
