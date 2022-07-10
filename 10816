@@ -1,0 +1,54 @@
+import java.util.HashMap;
+
+import java.util.StringTokenizer;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
+
+public class Main 
+{
+	public static void main (String[] args) throws IOException
+	{
+		BufferedReader input = new BufferedReader( new InputStreamReader(System.in) );
+		BufferedWriter out = new BufferedWriter( new OutputStreamWriter(System.out) );
+		
+		HashMap<String, Integer> Map = new HashMap<String, Integer>();
+		
+		int n = Integer.parseInt( input.readLine() );
+		
+		StringTokenizer st1 = new StringTokenizer( input.readLine(), " " );
+		
+		int m = Integer.parseInt( input.readLine() );
+		
+		StringTokenizer st2 = new StringTokenizer( input.readLine(), " " );
+		
+		for (int i=0; i<n; i++)
+		{
+			String s = st1.nextToken();
+			
+			if ( Map.containsKey( s ) == false )
+				Map.put( s , 1 );
+			
+			else
+				Map.replace( s , Map.get(s) + 1 );
+			
+		}
+		
+		for (int i=0; i<m; i++)
+		{
+			String s = st2.nextToken();
+			
+			if ( Map.containsKey( s ) == true )
+				out.write( Map.get(s) + " ");
+			
+			else
+				out.write( 0 + " ");
+		}
+		
+		out.flush();
+		out.close();
+	}
+}
