@@ -1,0 +1,78 @@
+import java.util.HashMap;
+import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collections;
+
+import java.util.StringTokenizer;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
+
+public class Main 
+{
+	public static void main (String[] args) throws IOException
+	{
+		BufferedReader input = new BufferedReader( new InputStreamReader(System.in) );
+		BufferedWriter out = new BufferedWriter( new OutputStreamWriter(System.out) );
+		
+		StringTokenizer st = new StringTokenizer( input.readLine(), " " );
+		
+		int n = Integer.parseInt( st.nextToken() );
+		int m = Integer.parseInt( st.nextToken() );
+		
+		HashMap<String, Integer> MapN = new HashMap<String, Integer>();
+		HashMap<String, Integer> MapM = new HashMap<String, Integer>();
+		
+		for (int i=0; i<n; i++)
+			MapN.put( input.readLine() , 1);
+		
+		for (int i=0; i<m; i++)
+			MapM.put( input.readLine() , 1);
+		
+		ArrayList<String> al = new ArrayList<String>();
+		
+		int count = 0;
+		
+		if ( n >= m)
+		{
+			Set<String> nKeys = MapN.keySet();
+			
+			for (String k : nKeys)
+			{
+				if ( MapM.containsKey(k) == true)
+				{
+					count++;
+					al.add(k);
+				}
+			}
+		}
+		
+		else
+		{
+			Set<String> mKeys = MapM.keySet();
+			
+			for (String k : mKeys)
+			{
+				if ( MapN.containsKey(k) == true)
+				{
+					count++;
+					al.add(k);
+				}
+			}
+		}
+		
+		Collections.sort(al);
+		
+		out.write(count + "\n");
+		
+		for ( String s : al )
+			out.write(s + "\n");
+		
+		out.flush();
+		out.close();
+		
+	}
+}
