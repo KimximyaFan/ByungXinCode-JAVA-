@@ -1,0 +1,69 @@
+import java.util.HashMap;
+import java.util.Set;
+
+import java.util.StringTokenizer;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
+
+public class Main 
+{
+	public static void main (String[] args) throws IOException
+	{
+		BufferedReader input = new BufferedReader( new InputStreamReader(System.in) );
+		BufferedWriter out = new BufferedWriter( new OutputStreamWriter(System.out) );
+		
+		StringTokenizer st1 = new StringTokenizer( input.readLine(), " " );
+		
+		int a = Integer.parseInt( st1.nextToken() );
+		int b = Integer.parseInt( st1.nextToken() );
+		
+		HashMap<String, Integer> SetA = new HashMap<String, Integer>();
+		HashMap<String, Integer> SetB = new HashMap<String, Integer>();
+		
+		StringTokenizer st2 = new StringTokenizer( input.readLine(), " " );
+		
+		for (int i=0; i<a; i++)
+			SetA.put( st2.nextToken() , 1);
+		
+		StringTokenizer st3 = new StringTokenizer( input.readLine(), " " );
+		
+		for (int i=0; i<b; i++)
+			SetB.put( st3.nextToken() , 1);
+		
+		int count = 0;
+		
+		if ( a <= b)
+		{
+			Set<String> keyA = SetA.keySet();
+			
+			for (String k : keyA)
+			{
+				if ( SetB.containsKey(k) == true)
+					count++;
+			}
+		}
+		
+		else
+		{
+			Set<String> keyB = SetB.keySet();
+			
+			for (String k : keyB)
+			{
+				if ( SetA.containsKey(k) == true)
+					count++;
+			}
+		}
+
+		int result = a + b - (2*count);
+		
+		out.write(result + "");
+		
+		out.flush();
+		out.close();
+		
+	}
+}
