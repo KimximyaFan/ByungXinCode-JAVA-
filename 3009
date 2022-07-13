@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class AACR
+{
+    public static void main (String[] args)
+    {
+        Scanner input = new Scanner(System.in);
+        
+        int ax = input.nextInt();
+        int ay = input.nextInt();
+        
+        int bx = input.nextInt();
+        int by = input.nextInt();
+        
+        int cx = input.nextInt();
+        int cy = input.nextInt();
+        
+        int dx = 0, dy = 0;
+        
+        if ( ax == bx)
+            dx = cx;
+        else if ( bx == cx)
+            dx = ax;
+        else
+            dx = bx;
+        
+        if ( ay == by)
+            dy = cy;
+        else if ( by == cy)
+            dy = ay;
+        else
+            dy = by;
+        
+        System.out.print( dx + " " + dy);
+            
+        
+    }
+}
