@@ -1,0 +1,149 @@
+// 하드코딩 a.k.a  
+
+import java.util.Scanner;
+
+public class Main 
+{
+	public static void main (String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+        
+		int k = input.nextInt();
+		
+		int[] Darr = new int[5];
+		int[] Oarr = new int[6];
+		int[] Larr = new int[6];
+		
+		for (int i=0; i<6; i++)
+		{
+			int a = input.nextInt();
+			int b = input.nextInt();
+			
+			Darr[a] += 1;
+			Oarr[i] = a;
+			Larr[i] = b;
+		}
+		
+		String s = "";
+		
+		for (int i=0; i<6; i++)
+			s += Oarr[i];
+		
+		if ( Darr[1] == 2 && Darr[3] == 2)
+		{
+			if ( s.equals("423131") == true)
+			{
+				System.out.print( ( Larr[0]*Larr[1] - Larr[3]*Larr[4] ) * k + "" );
+			}
+			else if ( s.equals("231314") == true)
+			{
+				System.out.print( ( Larr[0]*Larr[5] - Larr[2]*Larr[3] ) * k + "" );
+			}
+			else if ( s.equals("313142") == true)
+			{
+				System.out.print( ( Larr[4]*Larr[5] - Larr[1]*Larr[2] ) * k + "" );
+			}
+			else if ( s.equals("131423") == true)
+			{
+				System.out.print( ( Larr[3]*Larr[4] - Larr[0]*Larr[1] ) * k + "" );
+			}
+			else if ( s.equals("314231") == true)
+			{
+				System.out.print( ( Larr[2]*Larr[3] - Larr[0]*Larr[5] ) * k + "" );
+			}
+			else
+			{
+				System.out.print( ( Larr[1]*Larr[2] - Larr[4]*Larr[5] ) * k + "" );
+			}
+			
+		}
+		else if ( Darr[1] == 2 && Darr[4] == 2)
+		{
+			
+			if ( s.equals("423141") == true)
+			{
+				System.out.print( ( Larr[1]*Larr[2] - Larr[4]*Larr[5] ) * k + "" );
+			}
+			else if ( s.equals("231414") == true)
+			{
+				System.out.print( ( Larr[0]*Larr[1] - Larr[3]*Larr[4] ) * k + "" );
+			}
+			else if ( s.equals("314142") == true)
+			{
+				System.out.print( ( Larr[5]*Larr[0] - Larr[2]*Larr[3] ) * k + "" );
+			}
+			else if ( s.equals("141423") == true)
+			{
+				System.out.print( ( Larr[4]*Larr[5] - Larr[1]*Larr[2] ) * k + "" );
+			}
+			else if ( s.equals("414231") == true)
+			{
+				System.out.print( ( Larr[3]*Larr[4] - Larr[0]*Larr[1] ) * k + "" );
+			}
+			else
+			{
+				System.out.print( ( Larr[2]*Larr[3] - Larr[5]*Larr[0] ) * k + "" );
+			}
+			
+		}
+		else if ( Darr[2] == 2 && Darr[4] == 2)
+		{
+			
+			if ( s.equals("424231") == true)
+			{
+				System.out.print( ( Larr[4]*Larr[5] - Larr[1]*Larr[2] ) * k + "" );
+			}
+			else if ( s.equals("242314") == true)
+			{
+				System.out.print( ( Larr[3]*Larr[4] - Larr[0]*Larr[1] ) * k + "" );
+			}
+			else if ( s.equals("423142") == true)
+			{
+				System.out.print( ( Larr[2]*Larr[3] - Larr[5]*Larr[0] ) * k + "" );
+			}
+			else if ( s.equals("231424") == true)
+			{
+				System.out.print( ( Larr[1]*Larr[2] - Larr[4]*Larr[5] ) * k + "" );
+			}
+			else if ( s.equals("314242") == true)
+			{
+				System.out.print( ( Larr[0]*Larr[1] - Larr[3]*Larr[4] ) * k + "" );
+			}
+			else
+			{
+				System.out.print( ( Larr[5]*Larr[0] - Larr[2]*Larr[3] ) * k + "" );
+			}
+			
+		}
+		else
+		{
+			
+			if ( s.equals("423231") == true)
+			{
+				System.out.print( ( Larr[5]*Larr[0] - Larr[2]*Larr[3] ) * k + "" );
+			}
+			else if ( s.equals("232314") == true)
+			{
+				System.out.print( ( Larr[4]*Larr[5] - Larr[1]*Larr[2] ) * k + "" );
+			}
+			else if ( s.equals("323142") == true)
+			{
+				System.out.print( ( Larr[3]*Larr[4] - Larr[0]*Larr[1] ) * k + "" );
+			}
+			else if ( s.equals("231423") == true)
+			{
+				System.out.print( ( Larr[2]*Larr[3] - Larr[5]*Larr[0] ) * k + "" );
+			}
+			else if ( s.equals("314232") == true)
+			{
+				System.out.print( ( Larr[1]*Larr[2] - Larr[4]*Larr[5] ) * k + "" );
+			}
+			else
+			{
+				System.out.print( ( Larr[0]*Larr[1] - Larr[3]*Larr[4] ) * k + "" );
+			}
+			
+		}
+		
+	}
+}
