@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class AACU 
+{
+	public static void main (String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+		
+		int r = input.nextInt();
+		
+		double s1 = r * r * Math.PI;
+		
+		double s2 = r * r * 2;
+		
+		System.out.println( String.format("%.6f", s1) );
+		System.out.println( String.format("%.6f", s2) );
+	}
+}
