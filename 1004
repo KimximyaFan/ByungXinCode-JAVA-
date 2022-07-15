@@ -1,0 +1,49 @@
+import java.util.Scanner;
+
+public class Main 
+{
+	public static void main (String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+		
+		int T = input.nextInt();
+		
+		while (T-- > 0)
+		{
+			int x1 = input.nextInt();
+			int y1 = input.nextInt();
+			int x2 = input.nextInt();
+			int y2 = input.nextInt();
+			
+			int n = input.nextInt();
+			
+			int[] cx = new int[n];
+			int[] cy = new int[n];
+			int[] cr = new int[n];
+			
+			int count = 0;
+			
+			for (int i=0; i<n; i++)
+			{
+				cx[i] = input.nextInt();
+				cy[i] = input.nextInt();
+				cr[i] = input.nextInt();
+				
+				if ( Math.pow( cx[i] - x1 , 2) + Math.pow( cy[i] - y1 , 2) < Math.pow( cr[i] , 2) )
+					count++;
+				
+				if ( Math.pow( cx[i] - x2 , 2) + Math.pow( cy[i] - y2 , 2) < Math.pow( cr[i] , 2) )
+					count++;
+				
+				if ( Math.pow( cx[i] - x1 , 2) + Math.pow( cy[i] - y1 , 2) < Math.pow( cr[i] , 2) &&
+						Math.pow( cx[i] - x2 , 2) + Math.pow( cy[i] - y2 , 2) < Math.pow( cr[i] , 2) )
+					count -= 2;
+				
+			}
+			
+			System.out.println(count);
+			
+			
+		}
+	}
+}
