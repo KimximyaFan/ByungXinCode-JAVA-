@@ -1,0 +1,70 @@
+/*
+유클리드 호제법
+출처 https://myjamong.tistory.com/138
+2개의 자연수  a, b에 대해서 a를 b로 나눈 나머지를 r이라 하면 (단 a>b), 
+a와 b의 최대공약수는 b와 r의 최대공약수와 같다.
+이 성질에 따라, b를 r로 나눈 나머지 r0를 구하고, 다시 r을 r0로 나눈 나머지를 구하는 과정을 반복하여 
+나머지가 0이 되었을 때 나누는 수가 a와 b의 최대공약수이다.
+
+a>b
+gcd (a, b) = gcd(b, a%b)
+
+if (a % b == 0)
+  gcd = b
+else
+  gcd(b, a%b)
+
+최소공배수 = 두 자연수의 곱 / 최대공약수
+
+*/
+
+
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
+
+import java.util.StringTokenizer;
+
+public class AADB 
+{
+	public static void main (String[] args) throws IOException
+	{
+		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		int T = Integer.parseInt(input.readLine());
+		
+		while (T-- > 0)
+		{
+			StringTokenizer st = new StringTokenizer(input.readLine(), " ");
+			
+			int a = Integer.parseInt(st.nextToken());
+			int b = Integer.parseInt(st.nextToken());
+			
+			int min = Math.min(a, b);
+			int max = Math.max(a, b);
+			
+			int gcf = Gcf(max, min);
+			int lcm = max * min / gcf;
+			
+			out.write(lcm + "\n");
+			
+			out.flush();
+		}
+		
+		out.close();
+		
+		
+	}
+	
+	public static int Gcf (int max, int min)
+	{
+		if ( max % min == 0)
+			return min;
+		else
+			return Gcf ( min, max % min);
+	}
+}
