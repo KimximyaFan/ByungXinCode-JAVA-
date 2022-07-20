@@ -1,0 +1,43 @@
+import java.util.Scanner;
+import java.math.BigInteger;
+
+public class AADE 
+{
+	public static void main (String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+		
+		int n = input.nextInt();
+		int k = input.nextInt();
+		
+		System.out.print( f(n,k) );
+	}
+	
+	public static BigInteger f (int n, int k)
+	{
+		if (k == 0 || n == k)
+		{
+			BigInteger one = new BigInteger(1 + "");
+			return one;
+		}
+			
+		
+		if ( k > n/2 )
+			k = n-k;
+		
+		BigInteger N = new BigInteger("1");
+		BigInteger K = new BigInteger("1");
+		
+		for (int i=0; i<k; i++)
+		{
+			BigInteger temp1 = new BigInteger(n-i + "");
+			BigInteger temp2 = new BigInteger(k-i + "");
+			N = N.multiply( temp1 );
+			K = K.multiply( temp2 );
+		}
+		
+		BigInteger d = new BigInteger( 10007 + "" );
+		
+		return (N.divide(K)).remainder(d);
+	}
+}
