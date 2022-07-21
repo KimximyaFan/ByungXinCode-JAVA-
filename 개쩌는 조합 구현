@@ -1,0 +1,28 @@
+// 출처 https://www.acmicpc.net/source/46394025
+// 백준 kimmin4051
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		int x, y, i, n, j;
+		
+		Scanner sc = new Scanner(System.in);
+		n = sc.nextInt();
+		for(i=0;i<n;i++)
+		{
+			x = sc.nextInt();
+			y = sc.nextInt();
+			
+			int ans = 1;
+			for(j=0;j<x;j++)
+			{
+				ans*=y-j;
+				ans/=j+1;
+			}
+			System.out.println(ans);
+		}
+	}
+
+}
