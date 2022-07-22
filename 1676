@@ -1,0 +1,40 @@
+// 2와 5의 소인수 갯수로 0의 갯수를 구할 수 있음
+// min(2갯수, 5갯수) 라 하나
+// 5의 갯수가 항상 2보다 작다고함 ( 증명은 안봤음 )
+// 그래서 5의 갯수를 구하면 0의 갯수를 구할 수 있음
+
+import java.util.Scanner;
+import java.math.BigInteger;
+
+public class Main
+{
+	public static void main (String[] args)
+	{
+		Scanner input = new Scanner(System.in);
+		
+		int n = input.nextInt();
+		
+		BigInteger a = new BigInteger("1");
+		
+		for (int i=1; i<=n; i++)
+		{
+			BigInteger temp = new BigInteger(i + "");
+			a = a.multiply(temp);
+		}
+
+		String s = a.toString();
+		
+		int count = 0;
+		
+		for (int i=s.length()-1; i>=0; i--)
+		{
+			char temp = s.charAt(i);
+			if (temp == '0')
+				count++;
+			else
+				break;
+		}
+		
+		System.out.print(count);
+	}
+}
