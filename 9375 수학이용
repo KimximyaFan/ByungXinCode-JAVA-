@@ -1,0 +1,67 @@
+// 각각의 옷의 갯수에 옷을 입지 않은 경우의 수를 더한다 그래서
+// 각각의 옷의 갯수에 1을 더한 후 다 곱함
+// 모든 옷을 입지 않은경우 1을 뺀다
+
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
+import java.util.HashMap;
+import java.util.Set;
+import java.util.ArrayList;
+
+public class Main
+{
+	
+	
+	public static void main (String[] args) throws IOException
+	{
+		
+		
+		BufferedReader input = new BufferedReader( new InputStreamReader(System.in) );
+		BufferedWriter out = new BufferedWriter( new OutputStreamWriter(System.out) );
+
+		int T = Integer.parseInt(input.readLine());
+        
+        int n, m;
+        
+		while (T-- > 0)
+		{
+			int count = 1;
+			
+			HashMap<String, Integer> hm = new HashMap<String, Integer>();
+			
+			int N = Integer.parseInt(input.readLine());
+			
+			
+			
+			for (int i=0; i<N; i++)
+			{
+				StringTokenizer st = new StringTokenizer(input.readLine());
+				
+				st.nextToken();
+				String b = st.nextToken();
+				
+				if ( hm.containsKey(b) == false)
+					hm.put(b, 1);
+				else
+					hm.replace(b, hm.get(b) + 1);
+			}
+			
+			for (String k : hm.keySet())
+				count *= hm.get(k) + 1;
+			
+			out.write( count-1 + "\n");
+			
+			out.flush();
+			
+		}
+		
+		out.close();
+		
+	}
+	
+}
